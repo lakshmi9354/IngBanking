@@ -26,4 +26,5 @@ public class AccountController {
 		AccountResponseDTO accountResponseDTO = accountService.createAccount(accountRequestDTO);
 		return new ResponseEntity<AccountResponseDTO>(accountResponseDTO,HttpStatus.OK);
 	}
+	
 }

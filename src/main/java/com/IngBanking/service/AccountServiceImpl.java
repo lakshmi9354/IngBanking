@@ -1,6 +1,7 @@
 package com.IngBanking.service;
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,6 @@ public class AccountServiceImpl implements AccountService{
 		account.setAccountType(accountRequestDTO.getAccountType());
 		account.setAddress(accountRequestDTO.getAddress());
 		account.setAge(accountRequestDTO.getAge());
-		account.setCity(accountRequestDTO.getCity());
 		account.setEmail(accountRequestDTO.getEmail());
 		account.setGender(accountRequestDTO.getGender());
 		account.setPhNum(accountRequestDTO.getPhNum());
