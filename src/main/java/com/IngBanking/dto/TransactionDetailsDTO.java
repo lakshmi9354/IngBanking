@@ -19,6 +19,3 @@ public class TransactionDetailsDTO implements Serializable{
 	private String toAccount;
 
 }
-
-
-//{transactionDate:Date,transactionStatus:String,fromAccount:String,toAccount:String}

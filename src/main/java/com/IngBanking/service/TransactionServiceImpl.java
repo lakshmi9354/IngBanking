@@ -70,13 +70,7 @@ public class TransactionServiceImpl implements TransactionService{
 		accountdebit.setPhNum(accountfrom.getPhNum());
 		accountdebit.setPurpose(accountfrom.getPurpose());
 		accountdebit.setStatus(accountfrom.getStatus());
-//		List<Transaction> transactionDebitList=new ArrayList<>();
-//		transactionDebitList.add(transactionDebit);
-//		accountdebit.setTransaction(transactionDebitList);
-		System.out.println("debit save--");
 		transactionRepository.save(transactionDebit);
-//		Transaction enqiry=transactionRepository.findByFromAccount(transactionDebit.getFromAccount());
-//		transactionDebit.setTransactionId(enqiry.getTransactionId());
 		accountRepository.save(accountdebit);
 		
 		Transaction transactionCredit=new Transaction();
@@ -87,7 +81,6 @@ public class TransactionServiceImpl implements TransactionService{
 		transactionCredit.setToAccount(accountTo.getAccountNumber());
 		transactionCredit.setTransactionStatus("Funds credit");
 		transactionCredit.setUser(accountTo.getUser());
-//		transactionRepository.save(transactionCredit);
 		
 		accountcredit.setAccountId(accountTo.getAccountId());
 		accountcredit.setAccountNumber(accountTo.getAccountNumber());
@@ -102,27 +95,12 @@ public class TransactionServiceImpl implements TransactionService{
 		accountcredit.setPhNum(accountTo.getPhNum());
 		accountcredit.setPurpose(accountTo.getPurpose());
 		accountcredit.setStatus(accountTo.getStatus());
-//		List<Transaction> transactionDbit=new ArrayList<>();
-//		transactionDbit.add(transactionCredit);
-//		accountdebit.setTransaction(transactionDbit);
-		
-		System.out.println("---credit");
 		transactionRepository.save(transactionCredit);
-		
-		Transaction transactionFrom=transactionRepository.findByFromAccount(accountfrom.getAccountNumber());
-
-//		Transaction enqirycre=transactionRepository.findByFromAccount(transactionCredit.getToAccount());
-//		transactionCredit.setTransactionId(enqirycre.getTransactionId());
 		accountRepository.save(accountcredit);
-		
 		transactionDetailsDTO.setFromAccount(accountfrom.getAccountNumber());
 		transactionDetailsDTO.setToAccount(accountTo.getAccountNumber());
-		transactionDetailsDTO.setTransactionDate(transactionFrom.getTransactionDate());
-		transactionDetailsDTO.setTransactionStatus(transactionFrom.getTransactionStatus());
 		
 		return transactionDetailsDTO;
 	}
 
 }
-
-//{transactionDate:Date,transactionStatus:String,fromAccount:String,toAccount:String}

@@ -2,8 +2,6 @@ package com.IngBanking.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.UnsupportedEncodingException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,11 +53,6 @@ public class AccountControllerTest {
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON);
 		MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
-		
-		System.out.println("dffdf : ");
-		System.out.println(accountService.createAccount(accountRequestDTO));
-		System.out.println(mvcResult.getResponse());
-		
 		String expected = this.mapToJson(accountResponseDTO);
 		String output = mvcResult.getResponse().getContentAsString();
 		assertThat(output).isEqualTo(expected);
