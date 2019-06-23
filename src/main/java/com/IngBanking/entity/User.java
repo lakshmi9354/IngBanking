@@ -38,4 +38,9 @@ public class User implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "accountId")
 	private List<Account> account;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "transactionId")
+	private List<Transaction> transaction;
+	
 }

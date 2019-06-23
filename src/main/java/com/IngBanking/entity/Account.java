@@ -1,13 +1,17 @@
 package com.IngBanking.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -42,6 +46,12 @@ public class Account  implements Serializable{
 	private Double balance;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
 	private User user;
+	
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinColumn(name = "transactionId") private List<Transaction> transaction;
+	 */
 	
 
 
