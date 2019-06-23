@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -40,8 +41,20 @@ public class Account  implements Serializable{
 	private String gender;
 	private String accountNumber;
 	private Double balance;
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
+//	@ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
+	public Account(String firstName, String lastName, String accountNumber, String status, String accountType, 
+			Double balance) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.accountType = accountType;
+		this.status = status;
+		this.accountNumber = accountNumber;
+		this.balance = balance;
+	}
 	
 
 

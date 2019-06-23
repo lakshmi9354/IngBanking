@@ -34,7 +34,7 @@ public class User implements Serializable{
 	private String userName;
 	private String password;
 	private String role;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "accountId")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	@JoinColumn(name = "accountId")
 	private List<Account> account;
 }

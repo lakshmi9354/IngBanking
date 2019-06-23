@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -24,7 +25,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@WebMvcTest(value = AccountController.class)
 public class AccountControllerTest {
 
 	@Autowired
@@ -51,8 +52,14 @@ public class AccountControllerTest {
 		Mockito.when(accountService.createAccount(accountRequestDTO)).thenReturn(accountResponseDTO);
 		String uri = "/api/createAccount";
 		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(uri);
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON);
 		MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+		
+		System.out.println("dffdf : ");
+		System.out.println(accountService.createAccount(accountRequestDTO));
+		System.out.println(mvcResult.getResponse());
+		
 		String expected = this.mapToJson(accountResponseDTO);
 		String output = mvcResult.getResponse().getContentAsString();
 		assertThat(output).isEqualTo(expected);
