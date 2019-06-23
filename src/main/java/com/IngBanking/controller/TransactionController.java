@@ -1,6 +1,8 @@
 package com.IngBanking.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.IngBanking.dto.TransactionDTO;
+import com.IngBanking.dto.TransactionDetailsDTO;
 import com.IngBanking.service.TransactionService;
 
 @RestController
@@ -19,9 +22,10 @@ public class TransactionController {
 	private TransactionService TransactionService;
 	
 	@PostMapping("/transfer")
-	public void fundTransfer(@RequestBody TransactionDTO transactionDTO)
+	public ResponseEntity<TransactionDetailsDTO> fundTransfer(@RequestBody TransactionDTO transactionDTO)
 	{
-		TransactionService.fundTransfer(transactionDTO);
+		TransactionDetailsDTO transactionDetailsDTO=TransactionService.fundTransfer(transactionDTO);
+		return new ResponseEntity<>(transactionDetailsDTO,HttpStatus.OK);
 		
 	}
 	

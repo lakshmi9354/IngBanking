@@ -1,9 +1,5 @@
 package com.IngBanking.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -12,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.IngBanking.dto.TransactionDTO;
+import com.IngBanking.dto.TransactionDetailsDTO;
 import com.IngBanking.entity.Account;
 import com.IngBanking.entity.Transaction;
 import com.IngBanking.repository.AccountRepository;
@@ -31,8 +28,10 @@ public class TransactionServiceImpl implements TransactionService{
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionServiceImpl.class);
 	
 	@Override
-	public void fundTransfer(TransactionDTO transactionDTO) {
+	public TransactionDetailsDTO fundTransfer(TransactionDTO transactionDTO) {
 
+		TransactionDetailsDTO transactionDetailsDTO=new TransactionDetailsDTO();
+		
 		Transaction transactionDebit=new Transaction();
 		Account accountdebit=new Account();
 		Account accountcredit=new Account();
@@ -110,14 +109,20 @@ public class TransactionServiceImpl implements TransactionService{
 		System.out.println("---credit");
 		transactionRepository.save(transactionCredit);
 		
+		Transaction transactionFrom=transactionRepository.findByFromAccount(accountfrom.getAccountNumber());
 
 //		Transaction enqirycre=transactionRepository.findByFromAccount(transactionCredit.getToAccount());
 //		transactionCredit.setTransactionId(enqirycre.getTransactionId());
 		accountRepository.save(accountcredit);
 		
+		transactionDetailsDTO.setFromAccount(accountfrom.getAccountNumber());
+		transactionDetailsDTO.setToAccount(accountTo.getAccountNumber());
+		transactionDetailsDTO.setTransactionDate(transactionFrom.getTransactionDate());
+		transactionDetailsDTO.setTransactionStatus(transactionFrom.getTransactionStatus());
 		
-		
-		
+		return transactionDetailsDTO;
 	}
 
 }
+
+//{transactionDate:Date,transactionStatus:String,fromAccount:String,toAccount:String}

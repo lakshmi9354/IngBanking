@@ -1,9 +1,10 @@
 package com.IngBanking.service;
 
 import com.IngBanking.dto.TransactionDTO;
+import com.IngBanking.dto.TransactionDetailsDTO;
 
 public interface TransactionService {
 
-	public void fundTransfer(TransactionDTO transactionDTO);
+	public TransactionDetailsDTO fundTransfer(TransactionDTO transactionDTO);
 	
 }
