@@ -8,10 +8,10 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class AccountDTO implements Serializable {
+public class ApprovalDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Long userId;
+	private Long accountId;
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -22,8 +22,8 @@ public class AccountDTO implements Serializable {
 	private Long phNum;
 	private String accountType;
 	private String status;
-	private String password;
+
 	private String gender;
-	
+	private String accountNumber;
 
 }

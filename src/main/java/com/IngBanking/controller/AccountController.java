@@ -36,7 +36,6 @@ public class AccountController {
 		AccountResponseDTO accountResponseDTO = accountService.createAccount(accountRequestDTO);
 		return new ResponseEntity<AccountResponseDTO>(accountResponseDTO,HttpStatus.OK);
 	}
-	
 	@GetMapping(value="/summary/{userId}")	
 	public ResponseEntity<List<AccountDetailsDTO>> accountSummery(@PathVariable("userId") Long userId){
 		  LOGGER.debug("AccountController:accountSummary {} ", userId);
